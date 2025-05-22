@@ -1,0 +1,37 @@
+<div class="show-main-body">
+  <div class="show-list-name">
+    <h1><%= @list.name %> </h1>
+  </div>
+
+  <div class="show-bookmark-container">
+
+    <% @bookmarks.each do |bookmark| %>
+      <div class="show-bookmark-card" >
+          <div class="show-dard-img" style="background-image : url('<%= bookmark.movie.poster_url %>')">
+          </div>
+          <div class="show-card-info">
+            <div class="show-info-top">
+              <p><%= bookmark.movie.title %> <%= bookmark.movie.rating.round(1)    %></p><i class="fa-solid fa-star"></i>
+            </div>
+
+            <div class="show-info-bottom">
+            <p> <%= bookmark.comment %></p>
+            <%= link_to 'Delete', bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+            </div>
+          </div>
+      </div>
+
+    <% end %>
+
+
+  </div>
+
+
+  <div class="show-form-container">
+    <%= simple_form_for [@list, Bookmark.new] do |f| %>
+      <%= f.input :movie_id, collection: Movie.all %>
+      <%= f.input :comment %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>
