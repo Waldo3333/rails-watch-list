@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'JSON'
+require 'json'
 
 url = "https://tmdb.lewagon.com/movie/top_rated"
 
